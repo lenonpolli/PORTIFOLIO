@@ -1,0 +1,31 @@
+from pytube import YouTube
+from tkinter import *
+
+master = Tk()
+master.geometry('300x200')
+master.title("BAIXE SUAS MUSICAS")
+entry1 =Entry(master)
+entry1.grid(row=2,column=1)
+
+
+
+def pegarURL():
+
+   url = entry1.get()
+
+   printt = Label(master,text='Video baixado com sucesso !').grid(row=5,column=1)
+   YouTube(url).streams.first().download()
+   yt = YouTube(url)
+
+
+
+Label(master, text='INSIRA A URL').grid(row=1,column=1)
+Button(master,text='BAIXAR',command= pegarURL).grid(row=4,column=1)
+
+
+
+
+
+
+
+master.mainloop()
