@@ -1,0 +1,478 @@
+package View;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTextPane;
+import javax.swing.JDesktopPane;
+import javax.swing.JLayeredPane;
+import javax.swing.JToolBar;
+import javax.swing.JProgressBar;
+import javax.swing.JSlider;
+import javax.swing.JInternalFrame;
+import java.awt.Panel;
+import java.awt.BorderLayout;
+import javax.swing.JPasswordField;
+import com.jgoodies.forms.factories.DefaultComponentFactory;
+import java.awt.Label;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+
+
+
+
+public class Ver extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField txtJaneiro;
+	private JTextField txtFevereiro;
+	private JTextField txtMarco;
+	private JTextField txtAbril;
+	private JTextField txtMaio;
+	private JTextField txtJunho;
+	private JTextField txtJulho;
+	private JTextField txtAgosto;
+	private JTextField txtSetembro;
+	private JTextField txtOutubro;
+	private JTextField txtNovembro;
+	private JTextField txtDezembro;
+	private JLabel labeltext;
+	private JTextField textResultado;
+	private JTextField textConsumo;
+	private JTextField textPotencia;
+	private JTextField textPlacas;
+	private JTextField txtQuantidade;
+	private JTextField txtArea;
+	private JTextField textGeracao;
+	private JTextField txtGeracaoJulho;
+	private JTextField txtGeracaoFevereiro;
+	private JTextField txtGeracaoMarco;
+	private JTextField txtGeracaoAbril;
+	private JTextField txtGeracaoMaio;
+	private JTextField txtGeracaoJunho;
+	private JTextField txtGeracaoAgosto;
+	private JTextField txtGeracaoSetembro;
+	private JTextField txtGeracaoOutubro;
+	private JTextField txtGeracaoNovembro;
+	private JTextField txtGeracaoDezembro;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Ver frame = new Ver();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public void setTitle(String title) {
+	
+	}
+		
+	
+	
+	public Ver() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 818, 557);
+		contentPane = new JPanel();
+		contentPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+		});
+		contentPane.setBackground(new Color(192, 192, 192));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton btnNewButton = new JButton("CALCULAR");
+		btnNewButton.setBackground(new Color(0, 0, 0));
+		btnNewButton.setForeground(new Color(255, 0, 0));
+		btnNewButton.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				
+				double janeiro,fevereiro,marco,abril,maio,junho,julho,agosto,setembro,outubro,novembro,dezembro;
+				
+				double resultadomedia, mediaa;
+				
+				
+				
+				
+				janeiro = Double.parseDouble(txtJaneiro.getText());
+				fevereiro = Double.parseDouble(txtFevereiro.getText());
+				marco = Double.parseDouble(txtMarco.getText());
+				abril = Double.parseDouble(txtAbril.getText());
+				maio = Double.parseDouble(txtMaio.getText());
+				junho = Double.parseDouble(txtJunho.getText());
+				julho = Double.parseDouble(txtJulho.getText());
+				agosto = Double.parseDouble(txtAgosto.getText());
+				setembro = Double.parseDouble(txtSetembro.getText());
+				outubro = Double.parseDouble(txtOutubro.getText());
+				novembro = Double.parseDouble(txtNovembro.getText());
+				dezembro = Double.parseDouble(txtDezembro.getText());
+			
+				resultadomedia = janeiro + fevereiro + marco + abril + maio + junho + julho + agosto + setembro + outubro + novembro + dezembro;
+				mediaa = resultadomedia /12;
+				
+				
+				double consumoDiario;
+				
+				consumoDiario = mediaa/30.4;
+				
+				double potencia;
+				
+				potencia = (consumoDiario/0.76)/4.78;
+				
+				double quantidadePlacas,placas;
+				
+				placas = Double.parseDouble(textPlacas.getText());
+				
+				quantidadePlacas = (potencia*1000)/placas;
+			
+				double area;
+				
+				area = quantidadePlacas*2.16594;
+				
+				if (placas <= 500) {
+					
+					txtArea.setText(""+Math.ceil(area));
+				
+				}else {
+					area = quantidadePlacas*2.584386;
+					txtArea.setText(""+Math.ceil(area));
+				}
+				
+				
+				double geracaoJaneiro,geracaoFevereiro,geracaoMarco,geracaoAbril,geracaoMaio,geracaoJunho,geracaoJulho,geracaoAgosto,geracaoSetembro,geracaoOutubro,geracaoNovembro,geracaoDezembro;
+				
+				
+				geracaoJaneiro = potencia*6.43*30.4*0.76;
+				geracaoFevereiro = potencia*5.91*30.4*0.76;
+				geracaoMarco = potencia*5.35*30.4*0.76;
+				geracaoAbril = potencia*4.19*30.4*0.76;
+				geracaoMaio = potencia*3.27*30.4*0.76;
+				geracaoJunho = potencia*2.79*30.4*0.76;
+				geracaoJulho = potencia*3.02*30.4*0.76;
+				geracaoAgosto = potencia*3.98*30.4*0.76;
+				geracaoSetembro = potencia*4.28*30.4*0.76;
+				geracaoOutubro = potencia*5.29*30.4*0.76;
+				geracaoNovembro = potencia*6.17*30.4*0.76;
+				geracaoDezembro = potencia*6.63*30.4*0.76;
+				
+				
+				
+				textGeracao.setText("Mês de Janeiro: "+Math.ceil(geracaoJaneiro));
+				txtGeracaoFevereiro.setText("Mês de Fevereiro: "+Math.ceil(geracaoFevereiro));
+				txtGeracaoMarco.setText("Mês de Março: "+Math.ceil(geracaoMarco));
+				txtGeracaoAbril.setText("Mês de Abril: "+Math.ceil(geracaoAbril));
+				txtGeracaoMaio.setText("Mês de Maio: "+Math.ceil(geracaoMaio));
+				txtGeracaoJunho.setText("Mês de Junho: "+Math.ceil(geracaoJunho));
+				txtGeracaoJulho.setText("Mês de Julho: "+Math.ceil(geracaoJulho));
+				txtGeracaoAgosto.setText("Mês de Agosto: "+Math.ceil(geracaoAgosto));
+				txtGeracaoSetembro.setText("Mês de Setembro: "+Math.ceil(geracaoSetembro));
+				txtGeracaoOutubro.setText("Mês de Outubro: "+Math.ceil(geracaoOutubro));
+				txtGeracaoNovembro.setText("Mês de Novembro: "+Math.ceil(geracaoNovembro));
+				txtGeracaoDezembro.setText("Mês de Dezembro: "+Math.ceil(geracaoDezembro));
+				
+				textResultado.setText(""+Math.ceil(mediaa));
+				textConsumo.setText(""+Math.ceil(consumoDiario));
+				textPotencia.setText(""+Math.ceil(potencia));
+				txtQuantidade.setText(""+Math.ceil(quantidadePlacas));
+				
+				
+				
+			}
+		});
+		btnNewButton.setBounds(7, 403, 145, 42);
+		contentPane.add(btnNewButton);
+		
+		txtJaneiro = new JTextField();
+		txtJaneiro.setBounds(10, 20, 86, 20);
+		contentPane.add(txtJaneiro);
+		txtJaneiro.setColumns(10);
+		
+		txtFevereiro = new JTextField();
+		txtFevereiro.setBounds(10, 51, 86, 20);
+		contentPane.add(txtFevereiro);
+		txtFevereiro.setColumns(10);
+		
+		txtMarco = new JTextField();
+		txtMarco.setBounds(10, 82, 86, 20);
+		contentPane.add(txtMarco);
+		txtMarco.setColumns(10);
+		
+		txtAbril = new JTextField();
+		txtAbril.setBounds(10, 113, 86, 20);
+		contentPane.add(txtAbril);
+		txtAbril.setColumns(10);
+		
+		txtMaio = new JTextField();
+		txtMaio.setBounds(10, 144, 86, 20);
+		contentPane.add(txtMaio);
+		txtMaio.setColumns(10);
+		
+		txtJunho = new JTextField();
+		txtJunho.setBounds(10, 175, 86, 20);
+		contentPane.add(txtJunho);
+		txtJunho.setColumns(10);
+		
+		txtJulho = new JTextField();
+		txtJulho.setBounds(10, 206, 86, 20);
+		contentPane.add(txtJulho);
+		txtJulho.setColumns(10);
+		
+		txtAgosto = new JTextField();
+		txtAgosto.setBounds(10, 232, 86, 20);
+		contentPane.add(txtAgosto);
+		txtAgosto.setColumns(10);
+		
+		txtSetembro = new JTextField();
+		txtSetembro.setBounds(10, 263, 86, 20);
+		contentPane.add(txtSetembro);
+		txtSetembro.setColumns(10);
+		
+		txtOutubro = new JTextField();
+		txtOutubro.setBounds(10, 294, 86, 20);
+		contentPane.add(txtOutubro);
+		txtOutubro.setColumns(10);
+		
+		txtNovembro = new JTextField();
+		txtNovembro.setBounds(10, 325, 86, 20);
+		contentPane.add(txtNovembro);
+		txtNovembro.setColumns(10);
+		
+		txtDezembro = new JTextField();
+		txtDezembro.setBounds(10, 356, 86, 20);
+		contentPane.add(txtDezembro);
+		txtDezembro.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("Janeiro");
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		lblNewLabel.setBounds(106, 23, 68, 14);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_2 = new JLabel("Fevereiro");
+		lblNewLabel_2.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		lblNewLabel_2.setBounds(106, 54, 89, 14);
+		contentPane.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Março");
+		lblNewLabel_3.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		lblNewLabel_3.setBounds(106, 85, 68, 14);
+		contentPane.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Abril");
+		lblNewLabel_4.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		lblNewLabel_4.setBounds(106, 116, 68, 14);
+		contentPane.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("Maio");
+		lblNewLabel_5.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		lblNewLabel_5.setBounds(106, 147, 68, 14);
+		contentPane.add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_6 = new JLabel("Junho");
+		lblNewLabel_6.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		lblNewLabel_6.setBounds(106, 178, 68, 14);
+		contentPane.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_7 = new JLabel("Julho");
+		lblNewLabel_7.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		lblNewLabel_7.setBounds(106, 209, 46, 14);
+		contentPane.add(lblNewLabel_7);
+		
+		JLabel lblNewLabel_8 = new JLabel("Agosto");
+		lblNewLabel_8.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		lblNewLabel_8.setBounds(106, 235, 68, 20);
+		contentPane.add(lblNewLabel_8);
+		
+		JLabel lblNewLabel_9 = new JLabel("Setembro");
+		lblNewLabel_9.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		lblNewLabel_9.setBounds(106, 266, 89, 14);
+		contentPane.add(lblNewLabel_9);
+		
+		JLabel lblNewLabel_10 = new JLabel("Outubro");
+		lblNewLabel_10.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		lblNewLabel_10.setBounds(106, 297, 68, 14);
+		contentPane.add(lblNewLabel_10);
+		
+		JLabel lblNewLabel_11 = new JLabel("Novembro");
+		lblNewLabel_11.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		lblNewLabel_11.setBounds(106, 328, 89, 14);
+		contentPane.add(lblNewLabel_11);
+		
+		JLabel lblNewLabel_12 = new JLabel("Dezembro");
+		lblNewLabel_12.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		lblNewLabel_12.setBounds(106, 359, 99, 14);
+		contentPane.add(lblNewLabel_12);
+		
+		textResultado = new JTextField();
+		textResultado.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		textResultado.setBounds(647, 78, 86, 20);
+		contentPane.add(textResultado);
+		textResultado.setColumns(10);
+		
+		JLabel reslt = new JLabel("Média");
+		reslt.setFont(new Font("Tahoma", Font.BOLD, 14));
+		reslt.setBounds(492, 83, 109, 14);
+		contentPane.add(reslt);
+		
+		textConsumo = new JTextField();
+		textConsumo.setEditable(false);
+		textConsumo.setBounds(647, 51, 145, 20);
+		contentPane.add(textConsumo);
+		textConsumo.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("Consumo Diario");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1.setBounds(492, 52, 134, 14);
+		contentPane.add(lblNewLabel_1);
+		
+		textPotencia = new JTextField();
+		textPotencia.setEditable(false);
+		textPotencia.setBounds(647, 23, 145, 20);
+		contentPane.add(textPotencia);
+		textPotencia.setColumns(10);
+		
+		JLabel lblNewLabel_13 = new JLabel("Potência do Sistema");
+		lblNewLabel_13.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_13.setBounds(492, 21, 145, 14);
+		contentPane.add(lblNewLabel_13);
+		
+		textPlacas = new JTextField();
+		textPlacas.setBounds(284, 51, 86, 20);
+		contentPane.add(textPlacas);
+		textPlacas.setColumns(10);
+		
+		JLabel lblNewLabel_14 = new JLabel("Potência do Painel");
+		lblNewLabel_14.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_14.setBounds(258, 21, 149, 14);
+		contentPane.add(lblNewLabel_14);
+		
+		txtQuantidade = new JTextField();
+		txtQuantidade.setBounds(647, 113, 86, 20);
+		contentPane.add(txtQuantidade);
+		txtQuantidade.setColumns(10);
+		
+		JLabel lblNewLabel_15 = new JLabel("Quantidade Paineis");
+		lblNewLabel_15.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_15.setBounds(490, 114, 136, 14);
+		contentPane.add(lblNewLabel_15);
+		
+		txtArea = new JTextField();
+		txtArea.setBounds(647, 146, 86, 20);
+		contentPane.add(txtArea);
+		txtArea.setColumns(10);
+		
+		JLabel lblNewLabel_16 = new JLabel("Area(m²)");
+		lblNewLabel_16.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_16.setBounds(492, 150, 86, 14);
+		contentPane.add(lblNewLabel_16);
+		
+		textGeracao = new JTextField();
+		textGeracao.setBounds(273, 263, 134, 20);
+		contentPane.add(textGeracao);
+		textGeracao.setColumns(10);
+		
+		txtGeracaoJulho = new JTextField();
+		txtGeracaoJulho.setBounds(439, 263, 139, 20);
+		contentPane.add(txtGeracaoJulho);
+		txtGeracaoJulho.setColumns(10);
+		
+		txtGeracaoFevereiro = new JTextField();
+		txtGeracaoFevereiro.setBounds(273, 294, 134, 20);
+		contentPane.add(txtGeracaoFevereiro);
+		txtGeracaoFevereiro.setColumns(10);
+		
+		txtGeracaoMarco = new JTextField();
+		txtGeracaoMarco.setBounds(273, 325, 134, 20);
+		contentPane.add(txtGeracaoMarco);
+		txtGeracaoMarco.setColumns(10);
+		
+		txtGeracaoAbril = new JTextField();
+		txtGeracaoAbril.setBounds(273, 356, 134, 20);
+		contentPane.add(txtGeracaoAbril);
+		txtGeracaoAbril.setColumns(10);
+		
+		txtGeracaoMaio = new JTextField();
+		txtGeracaoMaio.setBounds(273, 387, 134, 20);
+		contentPane.add(txtGeracaoMaio);
+		txtGeracaoMaio.setColumns(10);
+		
+		txtGeracaoJunho = new JTextField();
+		txtGeracaoJunho.setBounds(273, 416, 134, 20);
+		contentPane.add(txtGeracaoJunho);
+		txtGeracaoJunho.setColumns(10);
+		
+		txtGeracaoAgosto = new JTextField();
+		txtGeracaoAgosto.setBounds(439, 294, 139, 20);
+		contentPane.add(txtGeracaoAgosto);
+		txtGeracaoAgosto.setColumns(10);
+		
+		txtGeracaoSetembro = new JTextField();
+		txtGeracaoSetembro.setBounds(439, 325, 139, 20);
+		contentPane.add(txtGeracaoSetembro);
+		txtGeracaoSetembro.setColumns(10);
+		
+		txtGeracaoOutubro = new JTextField();
+		txtGeracaoOutubro.setBounds(439, 356, 139, 20);
+		contentPane.add(txtGeracaoOutubro);
+		txtGeracaoOutubro.setColumns(10);
+		
+		txtGeracaoNovembro = new JTextField();
+		txtGeracaoNovembro.setBounds(439, 387, 139, 20);
+		contentPane.add(txtGeracaoNovembro);
+		txtGeracaoNovembro.setColumns(10);
+		
+		txtGeracaoDezembro = new JTextField();
+		txtGeracaoDezembro.setBounds(439, 416, 139, 20);
+		contentPane.add(txtGeracaoDezembro);
+		txtGeracaoDezembro.setColumns(10);
+		
+		JLabel lblNewLabel_17 = new JLabel("Geração");
+		lblNewLabel_17.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_17.setBounds(387, 223, 79, 14);
+		contentPane.add(lblNewLabel_17);
+		
+		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane.setBounds(703, 375, 1, 1);
+		contentPane.add(layeredPane);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+}
