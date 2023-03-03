@@ -14,12 +14,12 @@ class App:
 
 
 
-        self.imagem = Label(root)
-        self.imagemla = PhotoImage(file='C:\logio.png')
-        self.imagem['image'] = self.imagemla
-        self.imagem['width'] = '300'
-        self.imagem['height'] = '300'
-        self.imagem.pack()
+        #self.imagem = Label(root)
+        #self.imagemla = PhotoImage(file='C:\logio.png')
+        #self.imagem['image'] = self.imagemla
+        #self.imagem['width'] = '300'
+        #self.imagem['height'] = '300'
+        #self.imagem.pack()
 
 
         self.widget1 = Frame(master)
