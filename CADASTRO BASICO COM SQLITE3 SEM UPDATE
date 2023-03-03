@@ -1,0 +1,145 @@
+import tkinter
+import tkinter.messagebox
+from tkinter import *
+import sqlite3
+
+
+class App:
+    def __init__(self, master=None):
+
+        self.titulo = root.title('CADASTRO DE CLIENTES')
+        self.tamanho = root.geometry('650x700')
+        self.cor = root.configure(background='white')
+
+
+
+
+        self.imagem = Label(root)
+        self.imagemla = PhotoImage(file='C:\logio.png')
+        self.imagem['image'] = self.imagemla
+        self.imagem['width'] = '300'
+        self.imagem['height'] = '300'
+        self.imagem.pack()
+
+
+        self.widget1 = Frame(master)
+        self.widget1['bg'] = None
+        self.widget1.pack()
+
+
+
+        self.nome = Label(self.widget1, text='Nome' , font='Arial')
+        self.nome.pack()
+        self.entradaNome = Entry(self.widget1)
+        self.entradaNome.pack()
+        self.entradaNome.get()
+
+        self.email = Label(self.widget1, text="Email",font='Arial')
+        self.email.pack()
+        self.entradaEmail = Entry(self.widget1)
+        self.entradaEmail.pack()
+        self.entradaEmail.get()
+
+        self.endereco = Label(self.widget1, text='Endereço',font='Arial')
+        self.endereco.pack()
+        self.entradaEndereco = Entry(self.widget1)
+        self.entradaEndereco.pack()
+        self.entradaEndereco.get()
+
+        self.telefone = Label(self.widget1, text='Telefone',font='Arial')
+        self.telefone.pack()
+        self.entradaTelefone = Entry(self.widget1)
+        self.entradaTelefone.pack()
+        self.entradaTelefone.get()
+
+        self.quantPlacas = Label(self.widget1, text="Quantidade Placas",font='Arial')
+        self.quantPlacas.pack()
+        self.entradaQuantPlacas = Entry(self.widget1)
+        self.entradaQuantPlacas.pack()
+        self.entradaQuantPlacas.get()
+
+        self.inversor = Label(self.widget1, text='Inversor',font='Arial')
+        self.inversor.pack()
+        self.entradaInversor = Entry(self.widget1)
+        self.entradaInversor.pack()
+        self.entradaInversor.get()
+
+        self.cadastrar = Button(self.widget1, text='CADASTRAR',font='Arial')
+        self.cadastrar['command'] = self.cadastro
+        self.cadastrar.pack()
+
+        self.deletarUsuario = Button(self.widget1, text='DELETAR',font='Arial')
+        self.deletarUsuario['command'] = self.deletar
+        self.deletarUsuario.pack()
+
+        self.dadosbanco = Button(self.widget1, text='Ver dados',font='Arial')
+        self.dadosbanco['command'] = self.verDados
+        self.dadosbanco.pack()
+
+        self.mensagem = Label(self.widget1, text='')
+        self.mensagem.pack()
+
+        self.mensagemDados = Label(self.widget1, text='')
+        self.mensagemDados.pack()
+
+
+
+    def cadastro(self):
+
+        nome = self.entradaNome.get()
+        email = self.entradaEmail.get()
+        endereco = self.entradaEndereco.get()
+        telefone = self.entradaTelefone.get()
+        quantplacas = self.entradaQuantPlacas.get()
+        inversor = self.entradaInversor.get()
+
+        banco = sqlite3.connect('Banco_Cadastro.db')
+
+        cursor = banco.cursor()
+
+        # cursor.execute("CREATE TABLE DADOS(nome text ,email text, endereco text , telefone integer, quantplacas integer, inversor text)")
+
+
+
+        if nome == '':
+            self.msgWarning = tkinter.messagebox.showwarning(title='AVISO',message='Preencha todos os campos !')
+
+        else:
+
+            cursor.execute(
+                "INSERT INTO DADOS(nome,email,endereco,telefone,quantplacas,inversor) VALUES ('" + nome + "','" + email + "','" + endereco + "','" + telefone + "','" + quantplacas + "','" + inversor + "')")
+            self.msgbox = tkinter.messagebox.showinfo(title='Cadastro', message=' CADASTRADO FEITO COM SUCESSO !')
+
+        banco.commit()
+        cursor.close()
+
+    def deletar(self):
+        nome = self.entradaNome.get()
+        banco = sqlite3.connect('Banco_Cadastro.db')
+        cursor = banco.cursor()
+
+
+        if nome == '':
+            self.msgWarning = tkinter.messagebox.showwarning(title='Aviso', message='Digite um nome para continuar !')
+        else:
+            cursor.execute(
+                "DELETE FROM DADOS WHERE nome = ?", (nome,))
+            self.msgboxDelete = tkinter.messagebox.showinfo(title='Delete', message='Excluido com sucesso !')
+        banco.commit()
+        cursor.close()
+
+    def verDados(self):
+
+        self.janela = Toplevel()
+        self.janela.title('DADOS CLIENTES')
+        self.mostrardados = Label(self.janela,text='')
+        self.mostrardados.pack()
+        banco = sqlite3.connect('Banco_Cadastro.db')
+        cursor = banco.cursor()
+        cursor.execute("SELECT * FROM DADOS;")
+        self.mostrardados['text'] = cursor.fetchall()
+
+
+root = Tk()
+App(root)
+root.mainloop()
